@@ -1,5 +1,58 @@
 <script>
-	for (i=0; i<3 i++){
-		confirm("Hello World");
-	}
+
+		/*
+		var now = new Date();
+		var h = now.getHours();
+		var m = now.getMinutes();
+		var td= h - 12;
+		if( h >= 12){
+			td=td + " : "+ m + " PM";
+		}
+		elseif( h=0){
+			td="12"+ " : "+ m +" AM";
+		}
+		elseif(h < 12){
+			td=h + " : "+ m +" AM";;
+		}
+		else{
+			td=td + "AM";
+		}
+		alert("Today's date is "+ now);
+		*/
+		var now = new Date();
+		var hours=now.getHours();
+		var minutes=now.getMinutes();
+		var amPm="";
+		var newTime= hours -12;
+		//calculate the hour
+	
+		//amPM is PM if hours is greater than or equal to  12;
+		if(hours >= 12)
+		{
+			amPm="PM"
+		} 
+		else if( hours < 12)
+		{
+			newTime= hours;
+			amPm="AM";
+
+		}
+		else if(hours ==0)
+		{
+			newTime=0;
+			amPm="MidNight";
+		}
+		if (newTime > 10)
+		{
+			newTime=newTime;
+		} 
+		else if(newTime <10)
+		{
+			newTime="0"+newTime;
+		}
+		if (minutes < 10){
+			minutes ="0"+ minutes
+		}
+		alert("The Time is " + newTime + ":" + minutes + amPm);		
+
 </script>
