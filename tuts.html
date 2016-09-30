@@ -1,24 +1,5 @@
 <script>
 
-		/*
-		var now = new Date();
-		var h = now.getHours();
-		var m = now.getMinutes();
-		var td= h - 12;
-		if( h >= 12){
-			td=td + " : "+ m + " PM";
-		}
-		elseif( h=0){
-			td="12"+ " : "+ m +" AM";
-		}
-		elseif(h < 12){
-			td=h + " : "+ m +" AM";;
-		}
-		else{
-			td=td + "AM";
-		}
-		alert("Today's date is "+ now);
-		*/
 		var now = new Date();
 		var hours=now.getHours();
 		var minutes=now.getMinutes();
@@ -54,5 +35,7 @@
 			minutes ="0"+ minutes
 		}
 		alert("The Time is " + newTime + ":" + minutes + amPm);		
+
+
 
 </script>
