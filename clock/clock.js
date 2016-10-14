@@ -1,8 +1,11 @@
-var h=document.getElementById("hour");
-var m=document.getElementById("mins");
-var s= document.getElementById("secs");
-var ms= document.getElementById("milli");
-var ap= document.getElementById("ampm");
+// var h=document.getElementById("hour");
+// var m=document.getElementById("mins");
+// var s= document.getElementById("secs");
+// var ms= document.getElementById("milli");
+// var ap= document.getElementById("ampm");
+
+
+
 function digitalClock() {
 	//get the time
 		var now = new Date();
@@ -14,18 +17,21 @@ function digitalClock() {
 		var amPm="";
 		
 		newHours = addZero(hours);
-		minutes = addZero(minutes);
+		//minutes = minutes;
 		//seconds = addZero(seconds);//fixed bug
 
 		amPm = getAmPm(hours);
 
-		//document.getElementById("time").innerHTML = newHours + " : " + minutes + " : " + seconds + " : " + newMilli + " " + amPm;
-		h.innerHTML=newHours;
-		m.innerHTML = minutes;
-		s.innerHTML = seconds;
-		ms.innerHTML = newMilli;
-		ap.innerHTML = amPm;
-		var myTime = setTimeout(function(){digitalClock()}, 001);
+		document.getElementById("time").innerHTML = newHours + " : " + minutes + " : " + seconds + " : " + newMilli + " " + amPm;
+		// h.innerHTML=newHours;
+		// m.innerHTML = minutes;
+		// s.innerHTML = seconds;
+		// ms.innerHTML = newMilli;
+		// ap.innerHTML = amPm;
+		setTimeout(function()
+		{
+			digitalClock()
+		}, 1);
 }
 
 function getAmPm(hours){
