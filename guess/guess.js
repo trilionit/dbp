@@ -1,48 +1,56 @@
-$("#myForm").submit(function(event){
-	event.preventDefault();
-
 	var guessNum=guess();
-// 		//variables
 
-		var show =$("#showMsg");
-		var myNum = $(this).find("input[name=myNum]");
-		var newNum = parseInt(myNum.val());
-		
-		var fadeForm= $("#myForm").fadeOut(2000);
+var message;
+var guessNum= function (randNum, validate){
+	var a= Math.random() * 10;
+	var b= Math.round(a);
+	return b;
+}
+	function validate(){
+		this.guess=b;
+		this.randNum=randNum;
+		if guess < randNum{
+			message= randNum + " is too low";
+		}
+		else if( guess > randNum){
+			message = randNum + " is too high";
+		}
 
-		
-			//validate input//
-				var message;
-				if(newNum < guessNum){
-
-					message =newNum  + " is too low. Try again";
-
-				}
-				else if(newNum > guessNum){
-
-					message = newNum  + " is too high. Try again";
-
-				}
-				else if(isNaN(newNum)){
-
-					message="Please enter a valid number";
-				
-				}
-				else {
-					fadeForm;
-					message="You got it";
-
-				}
-		//display message
-		var newMsg=$("<p></p>");
-		newMsg.html(message);
-		show.append(newMsg);
+		else if (isNaN(guess)){
+			message = randNum + " is not a number";
+		}
+		else{
+			message = "You got it";
+		}
+	}
 
 
-	});
+var newNum=guessNum(3, message);
+console.log(newNum);
 
-		function guess(){
-			var a= (Math.random()* 10);
-			var b= Math.round(a);
-			return b;
-		}	
+// if(newNum < guessNum){
+
+// 	message =newNum  + " is too low. Try again";
+
+// }
+// else if(newNum > guessNum){
+
+// 	message = newNum  + " is too high. Try again";
+
+// }
+// else if(isNaN(newNum)){
+
+// 	message="Please enter a valid number";
+
+// }
+// else {
+// 	message="You got it";
+
+// }
+
+// module.exports=function guess(){
+// 	var a= (Math.random()* 10);
+// 	var b= Math.round(a);
+// 	return b;
+// }	
+// //module.exports.message=message;
