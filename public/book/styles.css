@@ -1,0 +1,23 @@
+.container{
+	width: 70%;
+	margin: 50px auto;
+}
+.book{
+	display: inline-block;
+	width: 40%;
+	margin: 30px auto;
+	padding: 0;
+	text-align: left;
+}
+.book ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.book li{
+	display:block;
+	padding: 0 10px;
+}
+.book li span{
+	font-weight: bold;
+}

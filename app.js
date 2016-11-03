@@ -1,47 +1,38 @@
-var express = require("express");
+var express =require("express");
 var app = express();
+var port = 3000;
+app.use(express.static('public'));
+//app.set('view engine', 'html');
+app.set('view engine', 'ejs');
+var bodyParser = require('body-parser');
+//var urlBodyParser= bodyParser.urlencoded({extended:true});
+//app.use(bodyParser.json());
+//or use 
+app.use(
+	bodyParser.urlencoded({extended:true })
+);
 
-function guess(){
-	var a= (Math.random()* 10);
-	var b= Math.round(a);
-	return b;
-}
-//guess the number GET METHOD
-//params and query	
-app.get('/:num', function (req, res){
-var newNum = parseInt(req.params.num);
-var guessNum=guess();
-var message;
+//script for our hello page
+//index page
+app.get('/hello', function (req, res){
+	console.log("Hello Website requested");
+	res.send('index');
 
-if(newNum < guessNum){
+	});
+app.post('/send', function(req, res){
+	 if (!req.body) return res.sendStatus(400);
+	//form submission from hello form
+	blog ={
+		title:req.body.title,
+		msg:req.body.message
+	};
+	
+	//console.log(blog.title +" \n" +  msg);
+	res.render('thankyou', blog);
 
-	message = newNum  + " is too low. Try again";
-
-}
-else if(newNum > guessNum){
-
-	message = newNum  + " is too high. Try again";
-
-}
-else if(isNaN(newNum)){
-
-	message="Please enter a valid number";
-
-}
-else {
-	message="You got it";
-
-}
-
-	console.log(message);
-	res.send(message);
 });
 
-//POST REQUESTS
-
-
-
-var port =3000;
-app.listen(port, function(){
-	console.log("Express Js started on port" + port);
+app.listen(port, function(){;
+var getTimeStamp = new Date();
+console.log('Express Server Started on ' + getTimeStamp);
 });

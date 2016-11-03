@@ -6,8 +6,8 @@ function guess(){
 	var b= Math.round(a);
 	return b;
 }	
-app.get('/guess/:num', function (req, res){
-var newNum = parseInt(req.params.num);
+app.get('/guess?num', function (req, res){
+var newNum = parseInt(req.query.num);
 var guessNum=guess();
 var message;
 

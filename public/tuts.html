@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM MANIPULATION</title>
+</head>
+<body>
+<!--
+<h1 id="h1">New Headline</h1>
+<script>
+var newFunction = function(){
+	
+	var top=document.getElementById("h1");
+	top.innerHTML="GUESS THE NUMBER";
+
+	// var bottom =document.createElement("div");
+	// bottom.innerHTML= "";
+	// document.body.appendChild(bottom);
+
+
+}
+
+window.addEventListener("load", newFunction);
+</script>
+-->
+<form id="sendForm">
+<input type="text" id="guessnumber">
+<input type="submit" name="submit" value="Submit" id="send">
+</form>
+<script>
+var sendForm= document.getElementById("sendForm");
+var inputNum=document.getElementById("guessnumber");
+var subForm=document.getElementById("send");
+var myNum= parseInt(inputNum.value);
+console.log(inputNum);
+// function guessNumb(num){
+// 		var myNum=8;
+
+// }
+		// var submitted = function(){
+
+		// 	function guessNumb (num){
+		// 		var myNum=8;
+		// 		if(num > myNum){
+		// 			alert("Number too high");
+		// 		}
+		// 		else if(num < myNum){
+		// 			alert("Number too low");
+		// 		}
+		// 		// else{
+		// 		// 	alert("You Entered the Correct Number");
+		// 		// }
+		// 		return guessNumb;
+		// 	}
+		// 		showNumb= parseInt(guessNumb(guessNum));
+		// 	//alert("You clicked me");
+		// }
+
+
+		//send.addEventListener("click", submitted);
+		
+</script>
+
+
+</body>
+</html>
