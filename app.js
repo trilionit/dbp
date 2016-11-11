@@ -11,28 +11,50 @@ var bodyParser = require('body-parser');
 app.use(
 	bodyParser.urlencoded({extended:true })
 );
+//database
 
 //script for our hello page
 //index page
-app.get('/hello', function (req, res){
+app.get('/blog', function (req, res){
 	console.log("Hello Website requested");
 	res.send('index');
 
 	});
+// app.post('/send', function(req, res){
+// 	 if (!req.body) return res.sendStatus(400);
+// 	//form submission from hello form
+// 	blog ={
+// 		title:req.body.title,
+// 		msg:req.body.message
+// 	};
+
+// 	console.log(blog.title +" \n" +  blog.msg);
+// 	res.render('thankyou', blog);
+// });
+
 app.post('/send', function(req, res){
 	 if (!req.body) return res.sendStatus(400);
-	//form submission from hello form
+	//form submission from blog form
 	blog ={
 		title:req.body.title,
 		msg:req.body.message
 	};
+	var blogMsg = JSON.stringify(blog);
+	res.redirect('/blog/send');
+	//console.log(blog.title +" \n" +  blog.msg);
 	
-	//console.log(blog.title +" \n" +  msg);
-	res.render('thankyou', blog);
-
 });
+// app.get('/retrieve', function(req, res){
+// 	data={
+// 	user1:"prince@trilionit.com",
+// 	user2:"emmanuel@nycda.com"
+// 	}
+// 	res.render('retrieve', data);
+// });
 
-app.listen(port, function(){;
+
+
+app.listen(port, function(){
 var getTimeStamp = new Date();
 console.log('Express Server Started on ' + getTimeStamp);
 });
