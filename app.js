@@ -1,60 +1,45 @@
 var express =require("express");
 var app = express();
 var port = 3000;
-app.use(express.static('public'));
-//app.set('view engine', 'html');
-app.set('view engine', 'ejs');
-var bodyParser = require('body-parser');
-//var urlBodyParser= bodyParser.urlencoded({extended:true});
-//app.use(bodyParser.json());
-//or use 
+var bodyParser = require("body-parser");
+
+
+app.set("view engine", "ejs");
+app.use(express.static("public"));
+
 app.use(
-	bodyParser.urlencoded({extended:true })
+  bodyParser.urlencoded({extended:true })
 );
-//database
-
-//script for our hello page
-//index page
-app.get('/blog', function (req, res){
-	console.log("Hello Website requested");
-	res.send('index');
-
-	});
-// app.post('/send', function(req, res){
-// 	 if (!req.body) return res.sendStatus(400);
-// 	//form submission from hello form
-// 	blog ={
-// 		title:req.body.title,
-// 		msg:req.body.message
-// 	};
-
-// 	console.log(blog.title +" \n" +  blog.msg);
-// 	res.render('thankyou', blog);
-// });
 
 app.post('/send', function(req, res){
-	 if (!req.body) return res.sendStatus(400);
-	//form submission from blog form
-	blog ={
-		title:req.body.title,
-		msg:req.body.message
+   if (!req.body) return res.sendStatus(400);
+  //form submission from blog form
+	var blog ={
+	title:req.body.title,
+	msg:req.body.message
 	};
-	var blogMsg = JSON.stringify(blog);
-	res.redirect('/blog/send');
-	//console.log(blog.title +" \n" +  blog.msg);
-	
+
+  res.render('blog', {blog:blog});
 });
-// app.get('/retrieve', function(req, res){
-// 	data={
-// 	user1:"prince@trilionit.com",
-// 	user2:"emmanuel@nycda.com"
-// 	}
-// 	res.render('retrieve', data);
-// });
+
+app.get('/blog', function (req, res){
+  console.log("blog website started");
+  res.render('index');
+
+  });
+
+app.get('/category/:posts', function (req, res){
+	var page = req.params.posts;
+  if(page =="blog"){
+    page = "post";
+  }
+  console.log("blog website started");
+  res.render(page);
+});
 
 
 
 app.listen(port, function(){
 var getTimeStamp = new Date();
-console.log('Express Server Started on ' + getTimeStamp);
+console.log('Server Started');
 });

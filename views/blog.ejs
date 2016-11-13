@@ -16,22 +16,16 @@
 <div class="container-fluid">
     
     <div class="col-md-6 inner-body">
-          <div class="text-left colorize">
+       
+          <% for(var i = 0; i < blog.length; i++){ %>
+          <div class="text-right colorize">
             <img src="../myblog/images/place-holder.jpg" width="100%">
-            <h4>New Blog Post Appears Here</h4>
-            <p>bla bla bla appears here. Maybe some lorem ipsum too
-            lorem ipsum too lorem ipsum too</p>
-            <a href="/category/blog/post-title">Read More</a>
+            <h4><%=blog[i].title %></h4>
+            <p><%=blog[i].msg %></p>
+            <a href="#">Read More</a>
           </div>
+          <% } %>
 
-      <div class="text-right colorize">
-        <img src="../myblog/images/place-holder-2.jpg" width="100%">
-        <h4>New Blog Post Appears Here</h4>
-        <p>bla bla bla appears here. Maybe some lorem ipsum too
-        lorem ipsum too lorem ipsum too</p>
-        <a href="/category/blog/post-title">Read More</a>
-     </div>
-      
     </div>
 
     <div class="col-md-6 inner-body">

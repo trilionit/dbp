@@ -13,13 +13,14 @@ var sequelize = new Sequelize('myblog', 'root', null, {
   storage: './myblog.db'
 });
 
-var postBlog = sequelize.define('blog', {
+var postBlog = sequelize.define('blogs', {
   id:{type: Sequelize.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true},
   title:Sequelize.STRING,
   msg:Sequelize.TEXT,
   createDate:Sequelize.DATE
 });
-sequelize.sync({force: true});
+
+sequelize.sync();
 
 
 app.use(
@@ -27,12 +28,30 @@ app.use(
 );
 
 app.get('/blog', function (req, res){
-	
-	sequelize.query("SELECT title FROM `blog`", { type: sequelize.QueryTypes.SELECT})
-	.then(function(dbtitle) {
-  	console.log(dbtitle);
-    
-  });
+	sequelize.sync().then(function(){
+  postBlog.findAll({
+    attributes:['title', 'msg'],
+    // where:{
+    //   id:1
+    // }
+    }).then(function(messages){
+      for(var i = 0; i < messages.length; i++){ 
+        var postToBlog=[];
+        postToBlog.push(messages[i].dataValues);
+      }
+      console.log(postToBlog);
+     console.log(postToBlog.length);
+      res.render('blog', {blog:postToBlog});
+    }); 
+});
+//Executing (default): SELECT `id`, `title`, `msg`, `createDate`, `createdAt`, `up
+//datedAt` FROM `blogs` AS `blog`;
+//
+
+// sequelize.query("SELECT title FROM `blogs`", { type: sequelize.QueryTypes.SELECT})
+//     .then(function(dbtitle) {
+//      console.log(dbtitle.dataValues);
+//     });
 
   // sequelize.query("SELECT msg FROM `blog`", { type: sequelize.QueryTypes.SELECT})
   // .then(function(dbMsg) {
@@ -42,8 +61,43 @@ app.get('/blog', function (req, res){
   // 	title:dbtitle,
   // 	msg:dbMsg
   // }
-  console.log("blog website started");
-  res.render('index');
+
+// messages=[ { dataValues: { title: 'New blog title', msg: 'SOme new enttry' },
+//     _previousDataValues: { title: 'New blog title', msg: 'SOme new enttry' },
+//     _changed: {},
+//     '$modelOptions':
+//      { timestamps: true,
+//        instanceMethods: {},
+//        classMethods: {},
+//        validate: {},
+//        freezeTableName: false,
+//        underscored: false,
+//        underscoredAll: false,
+//        paranoid: false,
+//        rejectOnEmpty: false,
+//        whereCollection: [Object],
+//        schema: null,
+//        schemaDelimiter: '',
+//        defaultScope: {},
+//        scopes: [],
+//        hooks: {},
+//        indexes: [],
+//        name: [Object],
+//        omitNul: false,
+//        sequelize: [Object],
+//        uniqueKeys: {},
+//        hasPrimaryKeys: true },
+//     '$options':
+//      { isNewRecord: false,
+//        '$schema': null,
+//        '$schemaDelimiter': '',
+//        raw: true,
+//        attributes: [Object] },
+//     hasPrimaryKeys: true,
+//     __eagerlyLoadedAssociations: [],
+//     isNewRecord: false } ]
+  
+ 
 
   });
 
@@ -61,7 +115,7 @@ app.post('/send', function(req, res){
     title:req.body.title,
     msg:req.body.message,
     createDate:new Date()
-  });
+  }); 
   // var blog={};
   // blog ={
   //   title:req.body.title,
